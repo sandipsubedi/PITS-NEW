@@ -16,17 +16,15 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
-import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.GridPane;
 import javafx.scene.paint.Color;
-import javafx.scene.web.WebView;
 
+import java.awt.geom.Ellipse2D;
 import java.io.IOException;
 import java.net.URL;
 import java.text.SimpleDateFormat;
 
-import java.time.Month;
 import java.util.Calendar;
 import java.util.Optional;
 import java.util.ResourceBundle;
@@ -41,7 +39,7 @@ public class MainController implements Initializable{
     @FXML
     TableColumn<ItemEntity, String> colUnit;
     @FXML
-    TableColumn colWalmartHyvee;
+    TableColumn<ItemEntity,String>other;
     @FXML
     TableColumn colUSFoods;
     @FXML
@@ -102,7 +100,7 @@ public class MainController implements Initializable{
 
 
         // Custom rendering of the table cell.
-        colUnit.setCellFactory(column -> {
+        other.setCellFactory(column -> {
             return new TableCell<ItemEntity, String>() {
                 @Override
                 protected void updateItem(String item, boolean empty) {
@@ -114,10 +112,10 @@ public class MainController implements Initializable{
                         setStyle("");
                     } else {
                         // Format date.
-                        setText((item));
+                        setText(item);
 
                         // Style all dates in March with a different color.
-                        if (item.equals("lbs")) {
+                        if (item.equals("0.0")) {
                             setTextFill(Color.CHOCOLATE);
                             setStyle("-fx-background-color: yellow");
                         } else {
@@ -428,7 +426,7 @@ public class MainController implements Initializable{
 
         colUnit.setCellValueFactory(new PropertyValueFactory<ItemEntity, String>("unit"));
 
-        colWalmartHyvee.setCellValueFactory(new PropertyValueFactory<ItemEntity, Double>("walmartHyvee"));
+        other.setCellValueFactory(new PropertyValueFactory<ItemEntity, String>("walmartHyvee"));
         colUSFoods.setCellValueFactory(new PropertyValueFactory<ItemEntity, Double>("usFoods"));
         colRoma.setCellValueFactory(new PropertyValueFactory<ItemEntity, Double>("roma"));
         colCount.setCellValueFactory(new PropertyValueFactory<ItemEntity, Integer>("count"));
@@ -650,7 +648,7 @@ public class MainController implements Initializable{
                     String selPrice = item1.getSelectedPrice();
 //                    if(selPrice.equals("Other"))
 //                    {
-//                        colWalmartHyvee.setCellFactory(column -> {
+//                        other.setCellFactory(column -> {
 //                            return new TableCell<ItemEntity, String>() {
 //                                @Override
 //                                protected void updateItem(String item, boolean empty)

@@ -64,7 +64,7 @@
         <columns>
           <TableColumn fx:id="colName" maxWidth="212.0" minWidth="195.0" prefWidth="195.0" text="Name" />
           <TableColumn fx:id="colUnit" maxWidth="147.0" minWidth="130.0" prefWidth="138.0" text="Unit" />
-           <TableColumn fx:id="colWalmartHyvee" maxWidth="155.0" minWidth="120.0" prefWidth="133.0" text="Other" />
+           <TableColumn fx:id="other" maxWidth="155.0" minWidth="120.0" prefWidth="133.0" text="Other" />
            <TableColumn fx:id="colUSFoods" maxWidth="123.0" minWidth="83.0" prefWidth="99.0" text="USFoods" />
            <TableColumn fx:id="colRoma" maxWidth="123.0" minWidth="85.0" prefWidth="89.0" text="Roma" />
            <TableColumn fx:id="colCount" maxWidth="140.0" minWidth="85.0" prefWidth="113.0" text="Count" />
