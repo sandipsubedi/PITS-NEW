@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.text.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+
+<VBox prefHeight="275.0" prefWidth="375.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="pits.AddItem">
+   <children>
+      <HBox alignment="TOP_CENTER" prefHeight="33.0" prefWidth="355.0">
+         <children>
+            <Label alignment="CENTER" contentDisplay="CENTER" text="Add New Item">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Label>
+         </children>
+         <VBox.margin>
+            <Insets />
+         </VBox.margin>
+      </HBox>
+      <HBox alignment="CENTER_LEFT" prefHeight="33.0" prefWidth="355.0">
+         <children>
+            <Label alignment="TOP_LEFT" text="Name:">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Label>
+            <TextField fx:id="addName" onDragEntered="#display" onDragOver="#display" onMouseDragEntered="#display" onMouseDragExited="#display" onMouseDragOver="#display" prefHeight="25.0" prefWidth="215.0">
+               <HBox.margin>
+                  <Insets left="95.0" />
+               </HBox.margin>
+            </TextField>
+         </children>
+      </HBox>
+      <HBox alignment="CENTER_LEFT" prefHeight="33.0" prefWidth="355.0">
+         <children>
+            <Label alignment="TOP_LEFT" text="Unit:">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Label>
+            <TextField fx:id="addUnit" prefWidth="215.0">
+               <HBox.margin>
+                  <Insets left="107.0" />
+               </HBox.margin>
+            </TextField>
+         </children>
+      </HBox>
+      <HBox alignment="CENTER_LEFT" prefHeight="33.0" prefWidth="355.0">
+         <children>
+            <Label alignment="TOP_LEFT" text="Walmart/Hyvee Price:">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Label>
+            <TextField fx:id="addWalmartHyvee" prefWidth="215.0">
+               <HBox.margin>
+                  <Insets left="3.0" />
+               </HBox.margin>
+            </TextField>
+         </children>
+      </HBox>
+      <HBox alignment="CENTER_LEFT" prefHeight="33.0" prefWidth="355.0">
+         <children>
+            <Label alignment="TOP_LEFT" text="USFoods Price:">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Label>
+            <TextField fx:id="addUSFoods" prefWidth="215.0">
+               <HBox.margin>
+                  <Insets left="44.0" />
+               </HBox.margin>
+            </TextField>
+         </children>
+      </HBox>
+      <HBox alignment="CENTER_LEFT" prefHeight="33.0" prefWidth="355.0">
+         <children>
+            <Label alignment="TOP_LEFT" text="Roma Price:">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Label>
+            <TextField fx:id="addRoma" prefWidth="215.0">
+               <HBox.margin>
+                  <Insets left="63.0" />
+               </HBox.margin>
+            </TextField>
+         </children>
+         <VBox.margin>
+            <Insets bottom="15.0" />
+         </VBox.margin>
+      </HBox>
+      <HBox alignment="CENTER_LEFT" prefHeight="33.0" prefWidth="355.0">
+         <children>
+            <Button fx:id="addItemCancel" mnemonicParsing="false" prefHeight="31.0" prefWidth="78.0" text="Cancel" />
+            <Region prefHeight="33.0" prefWidth="46.0" />
+            <Button fx:id="addItemOk" mnemonicParsing="false" prefHeight="31.0" prefWidth="68.0" text="Add" />
+         </children>
+         <padding>
+            <Insets left="100.0" right="100.0" />
+         </padding>
+      </HBox>
+   </children>
+   <padding>
+      <Insets bottom="10.0" left="15.0" right="10.0" top="10.0" />
+   </padding>
+</VBox>
