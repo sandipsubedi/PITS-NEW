@@ -37,12 +37,7 @@ public class ItemEntity extends GenericJson {
         this.usFoods = usfoods;
         this.roma = roma;
         this.count = count;
-        this.count= selectedPrice;
-    }
-
-
-    public ItemEntity(String name){
-        this.id=name;
+        this.selectedPrice= selectedPrice;
     }
 
     public String getId() {
@@ -93,6 +88,14 @@ public class ItemEntity extends GenericJson {
     public void setCount(String count) {
         this.count = count;
     }
+
+//    public String getTestTest() {
+//        return testTest;
+//    }
+//
+//    public void setTestTest(String testTest) {
+//        this.testTest = testTest;
+//    }
 
 
     private SimpleBooleanProperty checked = new SimpleBooleanProperty(false);

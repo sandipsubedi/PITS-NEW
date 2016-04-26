@@ -102,34 +102,7 @@ public class MainController implements Initializable{
 
         searchBar(); // search bar has to be called here
 
-//        // Custom rendering of the table cell.
-//        other.setCellFactory(column -> {
-//            return new TableCell<ItemEntity, String>() {
-//                @Override
-//                protected void updateItem(String item, boolean empty) {
-//                    super.updateItem(item, empty);
-//
-//                    System.out.println(column);
-//
-//                    if (item == null || empty) {
-//                        setText(null);
-//                        setStyle("");
-//                    } else {
-//                        // Format date.
-//                        setText(item);
-//
-//                        // Style all dates in March with a different color.
-//                        if (item.equals("0.0")) {
-//                            setTextFill(Color.CHOCOLATE);
-//                            setStyle("-fx-background-color: lightyellow");
-//                        } else {
-//                            setTextFill(Color.BLACK);
-//                            setStyle("");
-//                        }
-//                    }
-//                }
-//            };
-//        });
+
 //
 //        colUSFoods.setCellFactory(column -> {
 //            return new TableCell<ItemEntity, String>() {
@@ -161,34 +134,6 @@ public class MainController implements Initializable{
 //        });
 //
 //
-//        colRoma.setCellFactory(column -> {
-//            return new TableCell<ItemEntity, String>() {
-//                @Override
-//                protected void updateItem(String item, boolean empty) {
-//                    super.updateItem(item, empty);
-//
-//
-//
-//
-//                    if (item == null || empty) {
-//                        setText(null);
-//                        setStyle("");
-//                    } else {
-//                        // Format date.
-//                        setText(item);
-//
-//                        // Style all dates in March with a different color.
-//                        if (item.equals("0.0")) {
-//                            setTextFill(Color.CHOCOLATE);
-//                            setStyle("-fx-background-color: lightyellow");
-//                        } else {
-//                            setTextFill(Color.BLACK);
-//                            setStyle("");
-//                        }
-//                    }
-//                }
-//            };
-//        });
 //
 
 
@@ -201,18 +146,56 @@ public class MainController implements Initializable{
             @Override
             public void handle(MouseEvent event) {
 
+            /*
+            SINGLE CLICK
+             */
 
-                colUnit.setCellFactory(row -> {
+                if (event.isPrimaryButtonDown() && event.getClickCount() == 1) {
+
+                    colRoma.setCellFactory(column -> {
+                        return new TableCell<ItemEntity, String>() {
+                            @Override
+                            protected void updateItem(String item, boolean empty) {
+                                super.updateItem(item, empty);
+
+                                if (item == null || empty) {
+                                    setText(null);
+                                    setStyle("");
+                                } else {
+                                    // Format date.
+                                    setText(item);
+
+                                    // Style all dates in March with a different color.
+                                    if (item.equals("0.0")) {
+                                        setTextFill(Color.CHOCOLATE);
+                                        setStyle("-fx-background-color: lightyellow");
+                                    } else {
+                                        setTextFill(Color.BLACK);
+                                        setStyle("");
+                                    }
+                                }
+                            }
+                        };
+                    });
+
+
+
+                }
+
+
+
+
+
+                // Custom rendering of the table cell.
+                other.setCellFactory(column -> {
                     return new TableCell<ItemEntity, String>() {
                         @Override
                         protected void updateItem(String item, boolean empty) {
                             super.updateItem(item, empty);
 
-                            System.out.println("_____HERE ____________:: " + item);
+                         //    System.out.println(column);
 
-
-
-                           if (item == null || empty) {
+                            if (item == null || empty) {
                                 setText(null);
                                 setStyle("");
                             } else {
@@ -222,7 +205,7 @@ public class MainController implements Initializable{
                                 // Style all dates in March with a different color.
                                 if (item.equals("0.0")) {
                                     setTextFill(Color.CHOCOLATE);
-                                    setStyle("-fx-background-color: red");
+                                    setStyle("-fx-background-color: lightyellow");
                                 } else {
                                     setTextFill(Color.BLACK);
                                     setStyle("");
@@ -231,6 +214,10 @@ public class MainController implements Initializable{
                         }
                     };
                 });
+
+                /*
+                DOUBLE CLICK >>>.
+                 */
 
                      if (event.isPrimaryButtonDown() && event.getClickCount() == 2) {
                     System.out.println(myTable.getSelectionModel().getSelectedItem());
@@ -502,9 +489,11 @@ public class MainController implements Initializable{
 
     public void configureTable()
     {
-
         /**
          * set up columns and pull from database*/
+        /*
+        The idhere is the id in the database
+         */
         colName.setCellValueFactory(new PropertyValueFactory<ItemEntity, String>("id"));
         colUnit.setCellValueFactory(new PropertyValueFactory<ItemEntity, String>("unit"));
         other.setCellValueFactory(new PropertyValueFactory<ItemEntity, String>("walmartHyvee"));
