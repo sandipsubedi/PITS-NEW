@@ -62,12 +62,13 @@
    <center>
       <TableView fx:id="myTable" focusTraversable="false" maxWidth="800.0" minWidth="759.0" prefHeight="501.0" prefWidth="800.0" BorderPane.alignment="CENTER">
         <columns>
-          <TableColumn fx:id="colName" maxWidth="212.0" minWidth="195.0" prefWidth="195.0" text="Name" />
-          <TableColumn fx:id="colUnit" maxWidth="147.0" minWidth="130.0" prefWidth="138.0" text="Unit" />
-           <TableColumn fx:id="other" maxWidth="155.0" minWidth="120.0" prefWidth="133.0" text="Other" />
-           <TableColumn fx:id="colUSFoods" maxWidth="123.0" minWidth="83.0" prefWidth="99.0" text="USFoods" />
-           <TableColumn fx:id="colRoma" maxWidth="123.0" minWidth="85.0" prefWidth="89.0" text="Roma" />
-           <TableColumn fx:id="colCount" maxWidth="140.0" minWidth="85.0" prefWidth="113.0" text="Count" />
+          <TableColumn fx:id="colName" maxWidth="212.0" minWidth="155.0" prefWidth="155.0" text="Name" />
+          <TableColumn fx:id="colUnit" maxWidth="178.0" minWidth="105.0" prefWidth="105.0" text="Unit" />
+           <TableColumn fx:id="other" maxWidth="206.0" minWidth="114.0" prefWidth="128.0" text="Other" />
+           <TableColumn fx:id="colUSFoods" maxWidth="191.0" minWidth="83.0" prefWidth="111.0" text="USFoods" />
+           <TableColumn fx:id="colRoma" maxWidth="155.0" minWidth="66.0" prefWidth="66.0" text="Roma" />
+           <TableColumn fx:id="colCount" maxWidth="202.0" minWidth="85.0" prefWidth="87.0" text="Count" />
+           <TableColumn fx:id="colSelected" maxWidth="228.0" minWidth="85.0" prefWidth="102.0" text="Sel." />
 
         </columns>
       </TableView>

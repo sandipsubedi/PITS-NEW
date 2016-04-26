@@ -19,6 +19,7 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.GridPane;
 import javafx.scene.paint.Color;
+import org.controlsfx.control.PropertySheet;
 
 import java.awt.geom.Ellipse2D;
 import java.io.IOException;
@@ -41,11 +42,13 @@ public class MainController implements Initializable{
     @FXML
     TableColumn<ItemEntity,String>other;
     @FXML
-    TableColumn colUSFoods;
+    TableColumn<ItemEntity, String> colUSFoods;
     @FXML
-    TableColumn colRoma;
+    TableColumn<ItemEntity, String> colRoma;
     @FXML
     TableColumn<ItemEntity, Integer> colCount;
+    @FXML
+    TableColumn<ItemEntity, String> colSelected;
     @FXML
     Button addItem;
     @FXML
@@ -55,10 +58,7 @@ public class MainController implements Initializable{
     @FXML
     Button refreshImage;
 
-
-
     private String theme1Url = getClass().getResource("styleSheet.css").toExternalForm();
-
 
     public ObservableList<ItemEntity> list = FXCollections.observableArrayList();
     AppData<ItemEntity> myEvents;
@@ -71,6 +71,11 @@ public class MainController implements Initializable{
 
     @FXML
     TableView<ItemEntity> myTable;
+
+
+    // selected price
+
+    private String selectedPrice;
 
 
 
@@ -97,50 +102,139 @@ public class MainController implements Initializable{
 
         searchBar(); // search bar has to be called here
 
+//        // Custom rendering of the table cell.
+//        other.setCellFactory(column -> {
+//            return new TableCell<ItemEntity, String>() {
+//                @Override
+//                protected void updateItem(String item, boolean empty) {
+//                    super.updateItem(item, empty);
+//
+//                    System.out.println(column);
+//
+//                    if (item == null || empty) {
+//                        setText(null);
+//                        setStyle("");
+//                    } else {
+//                        // Format date.
+//                        setText(item);
+//
+//                        // Style all dates in March with a different color.
+//                        if (item.equals("0.0")) {
+//                            setTextFill(Color.CHOCOLATE);
+//                            setStyle("-fx-background-color: lightyellow");
+//                        } else {
+//                            setTextFill(Color.BLACK);
+//                            setStyle("");
+//                        }
+//                    }
+//                }
+//            };
+//        });
+//
+//        colUSFoods.setCellFactory(column -> {
+//            return new TableCell<ItemEntity, String>() {
+//                @Override
+//                protected void updateItem(String item, boolean empty) {
+//                    super.updateItem(item, empty);
+//
+//
+//                    System.out.println("***********" + item + " " + colUSFoods.toString() + "**********");
+//
+//                    if (item == null || empty) {
+//                        setText(null);
+//                        setStyle("");
+//                    } else {
+//                        // Format date.
+//                        setText(item);
+//
+//                        // Style all dates in March with a different color.
+//                        if (item.equals("0.0")) {
+//                            setTextFill(Color.CHOCOLATE);
+//                            setStyle("-fx-background-color: lightyellow");
+//                        } else {
+//                            setTextFill(Color.BLACK);
+//                            setStyle("");
+//                        }
+//                    }
+//                }
+//            };
+//        });
+//
+//
+//        colRoma.setCellFactory(column -> {
+//            return new TableCell<ItemEntity, String>() {
+//                @Override
+//                protected void updateItem(String item, boolean empty) {
+//                    super.updateItem(item, empty);
+//
+//
+//
+//
+//                    if (item == null || empty) {
+//                        setText(null);
+//                        setStyle("");
+//                    } else {
+//                        // Format date.
+//                        setText(item);
+//
+//                        // Style all dates in March with a different color.
+//                        if (item.equals("0.0")) {
+//                            setTextFill(Color.CHOCOLATE);
+//                            setStyle("-fx-background-color: lightyellow");
+//                        } else {
+//                            setTextFill(Color.BLACK);
+//                            setStyle("");
+//                        }
+//                    }
+//                }
+//            };
+//        });
+//
 
 
-        // Custom rendering of the table cell.
-        other.setCellFactory(column -> {
-            return new TableCell<ItemEntity, String>() {
-                @Override
-                protected void updateItem(String item, boolean empty) {
-                    super.updateItem(item, empty);
 
 
-                    if (item == null || empty) {
-                        setText(null);
-                        setStyle("");
-                    } else {
-                        // Format date.
-                        setText(item);
-
-                        // Style all dates in March with a different color.
-                        if (item.equals("0.0")) {
-                            setTextFill(Color.CHOCOLATE);
-                            setStyle("-fx-background-color: yellow");
-                        } else {
-                            setTextFill(Color.BLACK);
-                            setStyle("");
-                        }
-                    }
-
-
-
-
-                }
-            };
-        });
-
-
-
+        /*
+        DOUBLE CLICK
+         */
         myTable.setOnMousePressed(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent event) {
 
-                            if (event.isPrimaryButtonDown() && event.getClickCount() == 2) {
+
+                colUnit.setCellFactory(row -> {
+                    return new TableCell<ItemEntity, String>() {
+                        @Override
+                        protected void updateItem(String item, boolean empty) {
+                            super.updateItem(item, empty);
+
+                            System.out.println("_____HERE ____________:: " + item);
+
+
+
+                           if (item == null || empty) {
+                                setText(null);
+                                setStyle("");
+                            } else {
+                                // Format date.
+                                setText(item);
+
+                                // Style all dates in March with a different color.
+                                if (item.equals("0.0")) {
+                                    setTextFill(Color.CHOCOLATE);
+                                    setStyle("-fx-background-color: red");
+                                } else {
+                                    setTextFill(Color.BLACK);
+                                    setStyle("");
+                                }
+                            }
+                        }
+                    };
+                });
+
+                     if (event.isPrimaryButtonDown() && event.getClickCount() == 2) {
                     System.out.println(myTable.getSelectionModel().getSelectedItem());
                     try {
-
                         String textName1  = myTable.getSelectionModel().getSelectedItem().getId();
                         String textUnit1  = myTable.getSelectionModel().getSelectedItem().getUnit();
                         String textWH1  = myTable.getSelectionModel().getSelectedItem().getWalmartHyvee();
@@ -178,12 +272,9 @@ public class MainController implements Initializable{
             }
         });
 
-
         /*
         CSS is called in the Main.fxml : so we do not have to call that anymore !
          */
-
-
         System.out.println("Came back from there");
     }
 
@@ -269,8 +360,6 @@ public class MainController implements Initializable{
         updateTable();
     }
 
-
-
     public void lastUpdated(){
         String timeStamp = new SimpleDateFormat("MM/dd/yyyy  HH:mm:ss").format(Calendar.getInstance().getTime());
         timeText.setText(timeStamp);
@@ -283,8 +372,6 @@ public class MainController implements Initializable{
         /**
          * Build the dialog box and create all of the text fields/labels (maybe make the unit a dropdown box)
          * when they press ok, validate input and add into kinvey*/
-
-
         Dialog<ItemEntity> dialog = new Dialog<>();
         dialog.setTitle("Edit Item");
         dialog.setResizable(false);
@@ -331,8 +418,6 @@ public class MainController implements Initializable{
         grid.add(textRoma,2,5);
         grid.add(textCount,2,6);
         grid.add(cb,2,7);
-
-
 
         dialog.getDialogPane().setContent(grid);
         ButtonType buttonOK = new ButtonType("Save Changes", ButtonBar.ButtonData.OK_DONE);
@@ -421,19 +506,13 @@ public class MainController implements Initializable{
         /**
          * set up columns and pull from database*/
         colName.setCellValueFactory(new PropertyValueFactory<ItemEntity, String>("id"));
-
-        ItemEntity test = new ItemEntity();
-
         colUnit.setCellValueFactory(new PropertyValueFactory<ItemEntity, String>("unit"));
-
         other.setCellValueFactory(new PropertyValueFactory<ItemEntity, String>("walmartHyvee"));
-        colUSFoods.setCellValueFactory(new PropertyValueFactory<ItemEntity, Double>("usFoods"));
-        colRoma.setCellValueFactory(new PropertyValueFactory<ItemEntity, Double>("roma"));
+        colUSFoods.setCellValueFactory(new PropertyValueFactory<ItemEntity, String>("usFoods"));
+        colRoma.setCellValueFactory(new PropertyValueFactory<ItemEntity, String>("roma"));
         colCount.setCellValueFactory(new PropertyValueFactory<ItemEntity, Integer>("count"));
-
+        colSelected.setCellValueFactory(new PropertyValueFactory<ItemEntity,String>("selectedPrice"));
         updateTable();
-
-
     }
 
     // delete button clicked
@@ -529,7 +608,6 @@ public class MainController implements Initializable{
         grid.add(cb,2,6);
 
         dialog.getDialogPane().setContent(grid);
-
         ButtonType buttonOK = new ButtonType("Add", ButtonBar.ButtonData.OK_DONE);
 
 
@@ -630,9 +708,7 @@ public class MainController implements Initializable{
 
     public void updateTable()
     {
-
         lastUpdated();
-
         myEvents = Main.mKinveyClient.appData(Main.nameOfCollection, ItemEntity.class);
         // this should be the final list that is displayed at the table
         //list = FXCollections.observableArrayList();
@@ -642,54 +718,11 @@ public class MainController implements Initializable{
             System.out.println("in updateTable");
             for(ItemEntity item1: results)
             {
+
                 if(!list.contains(item1))
                 {
                     list.add(item1);
                     String selPrice = item1.getSelectedPrice();
-//                    if(selPrice.equals("Other"))
-//                    {
-//                        other.setCellFactory(column -> {
-//                            return new TableCell<ItemEntity, String>() {
-//                                @Override
-//                                protected void updateItem(String item, boolean empty)
-//                                {
-//                                    super.updateItem(item,empty);
-//                                    setStyle("-fx-background-color: #CCFF99");
-//                                    setText(item1.getWalmartHyvee());
-//                                }
-//                            };
-//                        });
-//                    }
-//                    else if(selPrice.equals("USFoods"))
-//                    {
-//                        colUSFoods.setCellFactory(column -> {
-//                            return new TableCell<ItemEntity, String>() {
-//                                @Override
-//                                protected void updateItem(String item, boolean empty)
-//                                {
-//                                    super.updateItem(item,empty);
-//                                    setStyle("-fx-background-color: #CCFF99");
-//                                    setText(item1.getUsFoods());
-//
-//                                }
-//                            };
-//                        });
-//                    }
-//                    else if(selPrice.equals("Roma"))
-//                    {
-//                        colRoma.setCellFactory(column -> {
-//                            return new TableCell<ItemEntity, String>() {
-//                                @Override
-//                                protected void updateItem(String item, boolean empty)
-//                                {
-//                                    super.updateItem(item,empty);
-//                                    setStyle("-fx-background-color: #CCFF99");
-//                                    setText(item1.getRoma());
-//
-//                                }
-//                            };
-//                        });
-//                    }
                }
 
                 // newItem.getMeta().setGloballyWritable(true);
