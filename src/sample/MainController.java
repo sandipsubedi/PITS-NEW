@@ -135,10 +135,6 @@ public class MainController implements Initializable{
 //
 //
 //
-
-
-
-
         /*
         DOUBLE CLICK
          */
@@ -149,71 +145,46 @@ public class MainController implements Initializable{
             /*
             SINGLE CLICK
              */
-
                 if (event.isPrimaryButtonDown() && event.getClickCount() == 1) {
 
-                    colRoma.setCellFactory(column -> {
-                        return new TableCell<ItemEntity, String>() {
-                            @Override
-                            protected void updateItem(String item, boolean empty) {
-                                super.updateItem(item, empty);
 
-                                if (item == null || empty) {
-                                    setText(null);
-                                    setStyle("");
-                                } else {
-                                    // Format date.
-                                    setText(item);
+                    System.out.println("here brother:" +myTable.getSelectionModel().getSelectedItem());
 
-                                    // Style all dates in March with a different color.
-                                    if (item.equals("0.0")) {
-                                        setTextFill(Color.CHOCOLATE);
-                                        setStyle("-fx-background-color: lightyellow");
-                                    } else {
-                                        setTextFill(Color.BLACK);
-                                        setStyle("");
-                                    }
-                                }
-                            }
-                        };
-                    });
 
+                    if(myTable.getSelectionModel().getSelectedItem().containsValue("Other")){
+
+                    }
+
+
+//                    colRoma.setCellFactory(column -> {
+//                        return new TableCell<ItemEntity, String>() {
+//                            @Override
+//                            protected void updateItem(String item, boolean empty) {
+//                                super.updateItem(item, empty);
+//
+//                                if (item == null || empty) {
+//                                    setText(null);
+//                                    setStyle("");
+//                                } else {
+//                                    // Format date.
+//                                    setText(item);
+//
+//                                    // Style all dates in March with a different color.
+//                                    if (item.equals("0.0") && myTable.getSelectionModel().getSelectedItem().containsValue("Other")) {
+//                                        setTextFill(Color.CHOCOLATE);
+//                                        setStyle("-fx-background-color: lightyellow");
+//                                    } else {
+//                                        setTextFill(Color.BLACK);
+//                                        setStyle("");
+//                                    }
+//                                }
+//                            }
+//                        };
+//                    });
 
 
                 }
 
-
-
-
-
-                // Custom rendering of the table cell.
-                other.setCellFactory(column -> {
-                    return new TableCell<ItemEntity, String>() {
-                        @Override
-                        protected void updateItem(String item, boolean empty) {
-                            super.updateItem(item, empty);
-
-                         //    System.out.println(column);
-
-                            if (item == null || empty) {
-                                setText(null);
-                                setStyle("");
-                            } else {
-                                // Format date.
-                                setText(item);
-
-                                // Style all dates in March with a different color.
-                                if (item.equals("0.0")) {
-                                    setTextFill(Color.CHOCOLATE);
-                                    setStyle("-fx-background-color: lightyellow");
-                                } else {
-                                    setTextFill(Color.BLACK);
-                                    setStyle("");
-                                }
-                            }
-                        }
-                    };
-                });
 
                 /*
                 DOUBLE CLICK >>>.
@@ -380,7 +351,19 @@ public class MainController implements Initializable{
         TextField textCount =  new TextField();
 
         ChoiceBox cb = new ChoiceBox(FXCollections.observableArrayList("Other", "USFoods", "Roma"));
-        cb.setValue("Other");
+
+
+       if( myTable.getSelectionModel().getSelectedItem().containsValue("Other")){
+           cb.setValue("Other");
+       }
+        if( myTable.getSelectionModel().getSelectedItem().containsValue("USFoods")){
+            cb.setValue("USFoods");
+        }
+        if( myTable.getSelectionModel().getSelectedItem().containsValue("Roma")){
+            cb.setValue("Roma");
+        }
+
+        System.out.println("the value we got is: " + cb.getValue());
 
         textName.setEditable(false);
         textName.setText(textName1);

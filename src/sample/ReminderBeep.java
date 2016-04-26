@@ -20,7 +20,6 @@ import java.util.TimerTask;
 
 public class ReminderBeep {
 
-
     Toolkit toolkit;
     Timer timer;
 
@@ -40,8 +39,6 @@ public class ReminderBeep {
             // System.exit(0); //Stops the AWT thread (and everything else)
           //   statusBar.setText("This is at the end");
         }
-
-
     }
 
     public String  newMethod(){
